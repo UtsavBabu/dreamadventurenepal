@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body class="admin-login-body">
   <div class="admin-login-shell">
     <section class="admin-login-card">
@@ -17,44 +18,39 @@
         <img src="/images/logo.jpeg" alt="Dream Adventure Nepal logo" class="login-logo-small">
         <span class="eyebrow">Admin access</span>
         <h1>Website control panel</h1>
-        <p>
-          Manage branding, journeys, blog posts, gallery images, footer details, 
-          and inquiries from one dashboard.
-        </p>
+        <p>Manage branding, journeys, blog posts, gallery images, footer details, and inquiries from one dashboard.</p>
       </div>
 
       <div class="login-form-wrap">
         <h2>Sign in</h2>
-        <p class="muted">Use the admin account to continue.</p>
+        <p class="muted">Use your admin username and password.</p>
 
         <% if (error) { %>
           <div class="error-box"><%= error %></div>
         <% } %>
 
-        <!-- FIXED FORM -->
-        <form method="POST" action="/admin/login" class="contact-form">
-          <input 
-            type="text" 
-            name="username" 
-            placeholder="Username" 
-            autocomplete="username"
+        <form method="POST" action="/admin/login" class="contact-form" autocomplete="off">
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
             required
           >
 
-          <input 
-            type="password" 
-            name="password" 
-            placeholder="Password" 
-            autocomplete="current-password"
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            autocomplete="new-password"
             required
           >
 
-          <button type="submit" class="btn btn-primary full-btn">
-            Login
-          </button>
+          <button type="submit" class="btn btn-primary full-btn">Login</button>
         </form>
 
-        <!-- Credentials removed for security -->
       </div>
 
     </section>
