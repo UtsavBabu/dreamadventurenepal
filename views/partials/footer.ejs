@@ -1,0 +1,53 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand-wrap footer-brand">
+        <img src="<%= site.brand.logoPath %>" alt="<%= site.brand.siteName %> logo" class="site-logo" />
+        <div>
+          <strong><%= site.brand.siteName %></strong>
+          <span><%= site.brand.tagline %></span>
+        </div>
+      </div>
+      <p class="footer-text"><%= site.footer.description %></p>
+      <div class="badge-row">
+        <span><%= site.footer.badge1 %></span>
+        <span><%= site.footer.badge2 %></span>
+        <span><%= site.footer.badge3 %></span>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer-heading">Popular Journeys</h4>
+      <ul class="footer-links">
+        <% site.packages.slice(0,5).forEach(pkg => { %>
+          <li><a href="/package/<%= pkg.slug %>"><%= pkg.title %></a></li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="footer-heading">Company</h4>
+      <ul class="footer-links">
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/blog">Travel Blog</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="footer-heading">Contact</h4>
+      <ul class="footer-links">
+        <li><%= site.brand.address %></li>
+        <li><a href="tel:<%= site.brand.phone.replace(/[^+\d]/g,'') %>"><%= site.brand.phone %></a></li>
+        <li><a href="mailto:<%= site.brand.email %>"><%= site.brand.email %></a></li>
+        <li><%= site.brand.openingHours %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <small>© <%= site.brand.sinceYear || '2026' %> <%= site.brand.siteName %>. All rights reserved. Govt. Reg. No: <%= site.brand.regNo %> | Tourism No: <%= site.brand.tourismNo %> | VAT: <%= site.brand.vatNo %></small>
+  </div>
+</footer>
+</body>
+</html>

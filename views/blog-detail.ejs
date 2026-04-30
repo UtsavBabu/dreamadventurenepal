@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<section class="page-hero">
+  <div class="narrow center-text">
+    <span class="eyebrow">Travel Blog</span>
+    <h1><%= blog.title %></h1>
+    <p><%= blog.excerpt %></p>
+  </div>
+</section>
+<section class="section">
+  <div class="narrow article-wrap">
+    <img src="<%= blog.cover_image %>" class="detail-image" alt="<%= blog.title %>">
+    <article class="article-card">
+      <p><%= blog.content %></p>
+    </article>
+  </div>
+</section>
+<%- include('partials/footer') %>

@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+<section class="page-hero">
+  <div class="narrow center-text">
+    <span class="eyebrow">Contact</span>
+    <h1>Plan your trip with confidence</h1>
+    <p>Send your details and we will help you choose the right journey, timing, and route style.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-layout">
+    <div class="contact-card">
+      <h2>Send inquiry</h2>
+      <p class="muted">Fill in the basics and we will get back to you with practical guidance on routes, dates, and what fits your travel plan best.</p>
+      <% if (success) { %><div class="success-box"><%= success %></div><% } %>
+
+      <form action="/inquiry" method="POST" class="contact-form">
+        <input name="name" placeholder="Your name" required>
+        <input name="email" type="email" placeholder="Email address" required>
+        <input name="phone" placeholder="Phone or WhatsApp">
+        <input name="trip" placeholder="Trip name or interest">
+        <input name="travel_date" placeholder="Preferred travel date">
+        <input name="group_size" placeholder="Group size">
+        <textarea name="message" rows="5" placeholder="Tell us what kind of trip you want"></textarea>
+        <button class="btn btn-primary full-btn" type="submit">Send inquiry</button>
+      </form>
+    </div>
+
+    <div class="contact-card">
+      <h2>Contact details</h2>
+      <p><strong>Address:</strong> <%= site.brand.address %></p>
+      <p><strong>Phone:</strong> <%= site.brand.phone %></p>
+      <p><strong>Email:</strong> <%= site.brand.email %></p>
+      <p><strong>Hours:</strong> <%= site.brand.openingHours %></p>
+      <div class="contact-map">
+        <img src="/images/contact-map.svg" alt="Dream Adventure Nepal contact visual">
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>

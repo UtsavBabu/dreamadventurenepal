@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="admin-login-body">
+  <div class="admin-login-shell">
+    <section class="admin-login-card">
+      <div class="login-visual">
+        <img src="/images/logo.jpeg" alt="Dream Adventure Nepal logo" class="login-logo-small">
+        <span class="eyebrow">Admin access</span>
+        <h1>Website control panel</h1>
+        <p>Manage branding, journeys, blog posts, gallery images, footer details, and inquiries from one dashboard.</p>
+      </div>
+
+      <div class="login-form-wrap">
+        <h2>Sign in</h2>
+        <p class="muted">Use the admin account to continue.</p>
+        <% if (error) { %><div class="error-box"><%= error %></div><% } %>
+
+        <form method="POST" action="/admin/login" class="contact-form">
+          <input type="text" name="username" placeholder="Username" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit" class="btn btn-primary full-btn">Login</button>
+        </form>
+
+        <div class="login-helper">Default: <strong>admin</strong> / <strong>admin123</strong></div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<%- include('partials/header') %>
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><%= site.home.badge %></span>
+      <h1><%= site.home.heroTitleLine1 %> <span><%= site.home.heroTitleAccent %></span> <%= site.home.heroTitleLine3 %></h1>
+      <p><%= site.home.heroSubtitle %></p>
+      <div class="hero-actions">
+        <a href="/packages" class="btn btn-primary">Explore Journeys</a>
+        <a href="/contact" class="btn btn-secondary">Talk to an Expert</a>
+      </div>
+      <div class="stats-row">
+        <div><strong><%= site.home.stat1Value %></strong><span><%= site.home.stat1Label %></span></div>
+        <div><strong><%= site.home.stat2Value %></strong><span><%= site.home.stat2Label %></span></div>
+        <div><strong><%= site.home.stat3Value %></strong><span><%= site.home.stat3Label %></span></div>
+        <div><strong><%= site.home.stat4Value %></strong><span><%= site.home.stat4Label %></span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="<%= site.home.heroImage || '/images/hero-nepal.svg' %>" alt="Scenic view of Nepal with mountain silhouettes">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container section-heading">
+    <div>
+      <span class="eyebrow light-eyebrow">Featured journeys</span>
+      <h2><%= site.home.sectionHeading %></h2>
+    </div>
+    <p><%= site.home.sectionText %></p>
+  </div>
+
+  <div class="container cards-grid packages-grid">
+    <% site.packages.filter(pkg => pkg.featured).slice(0,3).forEach(pkg => { %>
+      <article class="trip-card compact-card">
+        <img src="<%= pkg.image %>" alt="<%= pkg.title %>" class="trip-thumb">
+        <div class="trip-body">
+          <span class="chip"><%= pkg.category %></span>
+          <h3><%= pkg.title %></h3>
+          <p><%= pkg.description %></p>
+          <ul class="trip-meta">
+            <li><strong><%= pkg.duration %></strong>Duration</li>
+            <li><strong><%= pkg.difficulty %></strong>Difficulty</li>
+            <li><strong><%= pkg.altitude %></strong>Max altitude</li>
+            <li><strong><%= pkg.price %></strong>From</li>
+          </ul>
+          <a href="/package/<%= pkg.slug %>" class="btn btn-primary small">View details</a>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section alt-bg">
+  <div class="container two-col align-start">
+    <div>
+      <span class="eyebrow light-eyebrow">Why travelers choose us</span>
+      <h2>Clear planning, local support, and journeys that feel easy to book</h2>
+      <p>Travelers should be able to compare routes quickly, understand the essentials without guessing, and get a fast answer when they are ready to plan.</p>
+      <div class="cta-strip">
+        <p><strong>Need a custom trip?</strong> We can help with trekking, heritage tours, Tibet routes, and family travel planning.</p>
+        <div class="hero-actions" style="margin-top:14px;">
+          <a href="/contact" class="btn btn-primary small">Send inquiry</a>
+          <a href="/about" class="btn btn-dark small">Meet the team</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="values-grid cards-grid" style="grid-template-columns:repeat(2,minmax(0,1fr));">
+      <% site.values.forEach(value => { %>
+        <article class="value-card">
+          <div class="value-icon"><%= value.icon %></div>
+          <h3><%= value.title %></h3>
+          <p><%= value.description %></p>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container section-heading">
+    <div>
+      <span class="eyebrow light-eyebrow">Leadership & experts</span>
+      <h2>The people behind the journey</h2>
+    </div>
+  </div>
+
+  <div class="container team-grid">
+    <% site.team.forEach(person => { %>
+      <article class="team-card">
+        <img src="<%= person.image %>" alt="<%= person.role %>" class="team-photo">
+        <span class="role"><%= person.role %></span>
+        <h3><%= person.name %></h3>
+        <p><%= person.bio %></p>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>

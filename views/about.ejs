@@ -1,0 +1,53 @@
+<%- include('partials/header') %>
+<section class="page-hero">
+  <div class="narrow center-text">
+    <span class="eyebrow"><%= site.about.badgeLabel %></span>
+    <h1><%= site.about.heroTitle %></h1>
+    <p><%= site.about.heroSubtitle %></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col align-start">
+    <div class="stacked-images">
+      <img src="<%= site.about.mainImage %>" alt="Dream Adventure Nepal scenic visual" class="rounded-xl shadow-lg">
+      <img src="<%= site.about.sideImage %>" alt="Kathmandu heritage visual" class="rounded-xl shadow-lg smaller-offset">
+    </div>
+
+    <div class="about-copy">
+      <div class="info-badge">Est. <strong><%= site.about.established %></strong> • <%= site.about.establishedLocation %></div>
+      <h2><%= site.about.storyHeading %></h2>
+      <div class="about-story">
+        <p><%= site.about.storyParagraph1 %></p>
+        <p><%= site.about.storyParagraph2 %></p>
+        <p><%= site.about.storyParagraph3 %></p>
+      </div>
+      <div class="stats-row slim">
+        <% site.aboutStats.forEach(stat => { %>
+          <div><strong><%= stat.value %></strong><span><%= stat.label %></span></div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg">
+  <div class="container section-heading">
+    <div>
+      <span class="eyebrow light-eyebrow">Leadership</span>
+      <h2>Leadership team</h2>
+    </div>
+  </div>
+
+  <div class="container team-grid">
+    <% site.team.forEach(person => { %>
+      <article class="team-card">
+        <img src="<%= person.image %>" alt="<%= person.role %>" class="team-photo">
+        <span class="role"><%= person.role %></span>
+        <h3><%= person.name %></h3>
+        <p><%= person.bio %></p>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>

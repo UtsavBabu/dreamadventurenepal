@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+<section class="page-hero">
+  <div class="narrow center-text">
+    <span class="eyebrow">Gallery</span>
+    <h1>Mountain scenes, culture, and travel atmosphere</h1>
+    <p>The gallery helps travelers understand the feel of each journey before they ask for a quote.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container gallery-grid">
+    <% site.gallery.forEach(item => { %>
+      <article class="gallery-card">
+        <img src="<%= item.image %>" alt="<%= item.title %>">
+        <div class="gallery-body">
+          <span class="chip"><%= item.category %></span>
+          <h3><%= item.title %></h3>
+          <p><%= item.description %></p>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>

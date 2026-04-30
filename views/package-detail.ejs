@@ -1,0 +1,114 @@
+<%
+const isHeli = /helicopter/i.test(pkg.title + ' ' + (pkg.category || '') + ' ' + (pkg.subtitle || ''));
+const highlights = isHeli
+  ? [
+      `${pkg.duration} Everest route with guided trekking days and a scenic helicopter return`,
+      `Maximum altitude reaches ${pkg.altitude} with a pacing plan suited to a ${pkg.difficulty.toLowerCase()} route`,
+      'Saves several days of descent while keeping the classic Everest Base Camp experience',
+      'Strong option for travelers who want mountain views, local culture, and a shorter schedule'
+    ]
+  : [
+      `${pkg.duration} guided journey through the ${pkg.region} region`,
+      `${pkg.difficulty} level route with practical support from a local team`,
+      `${pkg.altitude} maximum altitude with clear route planning and preparation guidance`,
+      'Simple booking support, custom questions, and direct pre-trip communication'
+    ];
+const bestFor = isHeli
+  ? ['Travelers with limited time who still want Everest Base Camp', 'Guests who prefer a faster and more comfortable return', 'Couples, small groups, and premium trekkers looking for extra convenience', 'Visitors who want both trail experience and scenic helicopter views']
+  : [`Travelers interested in ${pkg.region} landscapes and local culture`, 'Guests who want a clear route without information overload', pkg.difficulty.toLowerCase().includes('easy') ? 'First-time trekkers or lighter travelers' : 'Travelers ready for a more immersive mountain experience', 'Anyone who values simple communication before booking'];
+const expectations = isHeli
+  ? ['Trip consultation before departure', 'Guidance on route, season, and clothing', 'Helicopter return support and coordination', 'Fast inquiry response from the local operations team']
+  : ['Trip consultation before departure', 'Flexible support for solo travelers, couples, or small groups', 'Guidance on season, clothing, and route expectations', 'Fast inquiry response from the local operations team'];
+const related = site.packages.filter(item => item.slug !== pkg.slug).slice(0,3);
+const itinerary = isHeli
+  ? ['Arrival and trip preparation in Kathmandu', 'Flight to Lukla and trek through the lower Everest trail', 'Move through Namche, Tengboche, Dingboche, and Lobuche', 'Reach Everest Base Camp and Kala Patthar viewpoints', 'Scenic helicopter return from the high Himalayas']
+  : ['Arrival or pre-trip briefing', 'Guided travel through the main trail and villages', 'Viewpoints, local stops, and gradual altitude gain', 'Main highlight section of the route', 'Return or onward support with local coordination'];
+%>
+<%- include('partials/header') %>
+
+<section class="section" style="padding-top:44px;">
+  <div class="container two-col align-start">
+    <div>
+      <img src="<%= pkg.image %>" alt="<%= pkg.title %>" class="detail-image">
+    </div>
+
+    <aside class="detail-card">
+      <span class="chip"><%= pkg.category %></span>
+      <h2><%= pkg.title %></h2>
+      <p><%= pkg.description %></p>
+
+      <div class="detail-grid">
+        <div><span>Region</span><strong><%= pkg.region %></strong></div>
+        <div><span>Duration</span><strong><%= pkg.duration %></strong></div>
+        <div><span>Difficulty</span><strong><%= pkg.difficulty %></strong></div>
+        <div><span>Max altitude</span><strong><%= pkg.altitude %></strong></div>
+        <div><span>Starting price</span><strong><%= pkg.price %></strong></div>
+        <div><span>Best fit</span><strong><%= pkg.category %></strong></div>
+      </div>
+
+      <div class="cta-strip">
+        <p><strong>Ready to plan?</strong> Send your inquiry and we will help with dates, route questions, packing, and booking support.</p>
+        <div class="hero-actions" style="margin-top:14px;">
+          <a href="/contact" class="btn btn-primary small">Book this journey</a>
+          <a href="/packages" class="btn btn-dark small">See more journeys</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="container package-body-grid">
+    <div style="display:grid;gap:22px;">
+      <section class="package-section-card">
+        <h3>Journey overview</h3>
+        <p><%= pkg.title %> is presented in a simple way so travelers can quickly understand what the route offers, what the pace feels like, and whether it fits their time and expectations.</p>
+        <p><%= isHeli ? 'This package combines the classic Everest trail atmosphere with a scenic helicopter return, making it ideal for travelers who want the full experience in fewer days.' : 'This route is built around clear planning, local support, and a smoother booking experience from the first enquiry to the final goodbye.' %></p>
+      </section>
+
+      <section class="package-section-card">
+        <h3>Highlights</h3>
+        <ul class="detail-list">
+          <% highlights.forEach(item => { %><li><%= item %></li><% }) %>
+        </ul>
+      </section>
+
+      <section class="package-section-card">
+        <h3>Best suited for</h3>
+        <ul class="detail-list">
+          <% bestFor.forEach(item => { %><li><%= item %></li><% }) %>
+        </ul>
+      </section>
+
+      <section class="package-section-card">
+        <h3>Simple trip flow</h3>
+        <ul class="detail-list">
+          <% itinerary.forEach(item => { %><li><%= item %></li><% }) %>
+        </ul>
+      </section>
+    </div>
+
+    <div style="display:grid;gap:22px;">
+      <section class="package-section-card">
+        <h3>What you can expect</h3>
+        <ul class="package-checks">
+          <% expectations.forEach(item => { %><li><%= item %></li><% }) %>
+        </ul>
+      </section>
+
+      <section class="package-section-card">
+        <h3>Related journeys</h3>
+        <div class="related-grid">
+          <% related.forEach(item => { %>
+            <a class="related-item" href="/package/<%= item.slug %>">
+              <img src="<%= item.image %>" alt="<%= item.title %>">
+              <div>
+                <h4><%= item.title %></h4>
+                <p><%= item.duration %> • <%= item.price %></p>
+              </div>
+            </a>
+          <% }) %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>

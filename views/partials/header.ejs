@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <meta name="description" content="<%= (site.seo && (currentPath === '/' ? site.seo.homeDescription : currentPath === '/about' ? site.seo.aboutDescription : currentPath === '/packages' ? site.seo.packagesDescription : currentPath.startsWith('/blog') ? site.seo.blogDescription : currentPath === '/gallery' ? site.seo.galleryDescription : site.seo.contactDescription)) || site.brand.tagline %>">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-row">
+    <a href="/" class="brand-wrap">
+      <img src="<%= site.brand.logoPath %>" alt="<%= site.brand.siteName %> logo" class="site-logo" />
+      <div>
+        <strong><%= site.brand.siteName %></strong>
+        <span><%= site.brand.tagline %></span>
+      </div>
+    </a>
+
+    <nav class="site-nav">
+      <a href="/" class="<%= currentPath==='/' ? 'active' : '' %>">Home</a>
+      <a href="/packages" class="<%= currentPath.startsWith('/package') || currentPath==='/packages' ? 'active' : '' %>">Journeys</a>
+      <a href="/about" class="<%= currentPath==='/about' ? 'active' : '' %>">About Us</a>
+      <a href="/blog" class="<%= currentPath.startsWith('/blog') ? 'active' : '' %>">Blog</a>
+      <a href="/gallery" class="<%= currentPath==='/gallery' ? 'active' : '' %>">Gallery</a>
+      <a href="/contact" class="<%= currentPath==='/contact' ? 'active' : '' %>">Contact</a>
+      <a href="/contact" class="btn btn-primary nav-cta">Book a Trip</a>
+    </nav>
+  </div>
+</header>

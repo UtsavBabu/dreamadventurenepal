@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Packing guide landscape">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#edf8ff"/>
+      <stop offset="100%" stop-color="#f8fbff"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0fa55e"/>
+      <stop offset="100%" stop-color="#40549b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1310" cy="170" r="72" fill="#ffd75a" opacity="0.95"/>
+  <path d="M0 780 C220 700 330 720 520 660 C700 600 820 620 1010 560 C1220 500 1390 520 1600 470 L1600 900 L0 900 Z" fill="#dbe6ef"/>
+  <path d="M0 820 C190 760 360 780 540 720 C740 660 900 690 1120 630 C1300 580 1450 585 1600 560 L1600 900 L0 900 Z" fill="url(#ground)"/>
+  <path d="M210 690 430 260 650 690 Z" fill="#dbe3ef"/>
+  <path d="M345 430 430 260 520 430 Z" fill="#ffffff" opacity="0.9"/>
+  <path d="M520 690 820 180 1090 690 Z" fill="#d3dceb"/>
+  <path d="M680 390 820 180 960 390 Z" fill="#ffffff" opacity="0.92"/>
+  <path d="M910 690 1180 250 1450 690 Z" fill="#eef2f7"/>
+  <path d="M1060 410 1180 250 1300 410 Z" fill="#ffffff" opacity="0.94"/>
+  <path d="M0 730 C220 700 360 710 520 650 C690 590 860 610 1040 565 C1260 510 1430 525 1600 500 L1600 900 L0 900 Z" fill="#fff" opacity="0.08"/>
+</svg>

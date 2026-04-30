@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+<section class="page-hero">
+  <div class="narrow center-text">
+    <span class="eyebrow">Travel Blog</span>
+    <h1>Helpful travel notes and planning ideas</h1>
+    <p>Short reads that make packing, timing, and destination choice easier for travelers.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container blog-grid">
+    <% site.blogs.forEach(blog => { %>
+      <article class="trip-card compact-card">
+        <img src="<%= blog.cover_image %>" alt="<%= blog.title %>" class="trip-thumb" />
+        <div class="trip-body">
+          <span class="chip"><%= blog.published_at || 'Travel Guide' %></span>
+          <h3><%= blog.title %></h3>
+          <p><%= blog.excerpt %></p>
+          <a href="/blog/<%= blog.slug %>" class="btn btn-primary small">Read More</a>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>

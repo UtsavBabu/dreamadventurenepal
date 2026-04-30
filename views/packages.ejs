@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+<section class="page-hero">
+  <div class="narrow center-text">
+    <span class="eyebrow">Journeys</span>
+    <h1>Trekking and travel journeys in Nepal</h1>
+    <p>Compare routes, difficulty, altitude, and price clearly before you open the full detail page.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container section-heading">
+    <div>
+      <span class="eyebrow light-eyebrow">All journeys</span>
+      <h2>Choose the route that fits your time, comfort, and travel style</h2>
+    </div>
+    <p>Each card keeps the essentials simple so visitors can compare faster and book with more confidence.</p>
+  </div>
+
+  <div class="container cards-grid packages-grid">
+    <% site.packages.forEach(pkg => { %>
+      <article class="trip-card compact-card">
+        <img src="<%= pkg.image %>" alt="<%= pkg.title %>" class="trip-thumb">
+        <div class="trip-body">
+          <span class="chip"><%= pkg.category %></span>
+          <h3><%= pkg.title %></h3>
+          <p><%= pkg.description %></p>
+          <ul class="trip-meta">
+            <li><strong><%= pkg.duration %></strong>Duration</li>
+            <li><strong><%= pkg.difficulty %></strong>Difficulty</li>
+            <li><strong><%= pkg.altitude %></strong>Max altitude</li>
+            <li><strong><%= pkg.price %></strong>From</li>
+          </ul>
+          <a href="/package/<%= pkg.slug %>" class="btn btn-primary small">View details</a>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>

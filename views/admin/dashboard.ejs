@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <span class="mini">Dashboard</span>
+      <h2>Control</h2>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="#branding">Branding</a>
+      <a href="#homepage">Homepage</a>
+      <a href="#about">About</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#footer">Footer</a>
+      <a href="#seo">SEO</a>
+      <a href="#packages">Packages</a>
+      <a href="#blog">Blog</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#inquiries">Inquiries</a>
+      <a href="/" target="_blank">View Site</a>
+      <a href="/admin/logout">Logout</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div><h1>Admin dashboard</h1></div>
+
+      <div class="stats-mini">
+        <div class="stat-box"><strong><%= admin.packages.length %></strong><span>Packages</span></div>
+        <div class="stat-box"><strong><%= admin.blogs.length %></strong><span>Blogs</span></div>
+        <div class="stat-box"><strong><%= admin.gallery.length %></strong><span>Gallery</span></div>
+        <div class="stat-box"><strong><%= admin.inquiries.length %></strong><span>Inquiries</span></div>
+      </div>
+    </div>
+
+    <% if (success) { %>
+      <div class="success-box admin-success"><%= success %></div>
+    <% } %>
+
+    <section id="branding" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>Branding</h2>
+      </div>
+      <form action="/admin/settings" method="POST" class="structured-settings-form js-settings-form" data-section-type="object">
+        <input type="hidden" name="section" value="brand">
+        <input type="hidden" name="payload" value="">
+        <div class="form-grid">
+          <label><span>Site name</span><input data-json-name="siteName" value="<%= admin.brand.siteName %>"></label>
+          <label><span>Tagline</span><input data-json-name="tagline" value="<%= admin.brand.tagline %>"></label>
+          <label><span>Since year</span><input data-json-name="sinceYear" value="<%= admin.brand.sinceYear %>"></label>
+          <div class="field">
+            <span>Logo image</span>
+            <div class="image-field">
+              <input id="brand-logoPath" class="path-input" readonly data-json-name="logoPath" value="<%= admin.brand.logoPath %>" placeholder="/images/uploads/logo.jpg">
+              <button type="button" class="btn btn-secondary small js-upload-btn" data-target="brand-logoPath" data-preview="brand-logoPreview">Upload image</button>
+            </div>
+            <div id="brand-logoPreview" class="inline-upload-preview"><img src="<%= admin.brand.logoPath %>" alt="Logo preview"></div>
+          </div>
+          <label><span>Phone</span><input data-json-name="phone" value="<%= admin.brand.phone %>"></label>
+          <label><span>WhatsApp</span><input data-json-name="whatsapp" value="<%= admin.brand.whatsapp %>"></label>
+          <label><span>Email</span><input data-json-name="email" value="<%= admin.brand.email %>"></label>
+          <label><span>Opening hours</span><input data-json-name="openingHours" value="<%= admin.brand.openingHours %>"></label>
+          <label class="span-2"><span>Address</span><input data-json-name="address" value="<%= admin.brand.address %>"></label>
+          <label><span>Government registration no.</span><input data-json-name="regNo" value="<%= admin.brand.regNo %>"></label>
+          <label><span>Tourism no.</span><input data-json-name="tourismNo" value="<%= admin.brand.tourismNo %>"></label>
+          <label><span>VAT no.</span><input data-json-name="vatNo" value="<%= admin.brand.vatNo %>"></label>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Save branding</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="homepage" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>Homepage</h2>
+      </div>
+      <form action="/admin/settings" method="POST" class="structured-settings-form js-settings-form" data-section-type="object">
+        <input type="hidden" name="section" value="home">
+        <input type="hidden" name="payload" value="">
+        <div class="form-grid">
+          <label><span>Badge</span><input data-json-name="badge" value="<%= admin.home.badge %>"></label>
+          <label><span>Section heading</span><input data-json-name="sectionHeading" value="<%= admin.home.sectionHeading %>"></label>
+          <label><span>Hero title line 1</span><input data-json-name="heroTitleLine1" value="<%= admin.home.heroTitleLine1 %>"></label>
+          <label><span>Hero accent</span><input data-json-name="heroTitleAccent" value="<%= admin.home.heroTitleAccent %>"></label>
+          <label class="span-2"><span>Hero line 3</span><input data-json-name="heroTitleLine3" value="<%= admin.home.heroTitleLine3 %>"></label>
+          <label class="span-2"><span>Hero subtitle</span><textarea data-json-name="heroSubtitle" rows="3"><%= admin.home.heroSubtitle %></textarea></label>
+          <label><span>Stat 1 value</span><input data-json-name="stat1Value" value="<%= admin.home.stat1Value %>"></label>
+          <label><span>Stat 1 label</span><input data-json-name="stat1Label" value="<%= admin.home.stat1Label %>"></label>
+          <label><span>Stat 2 value</span><input data-json-name="stat2Value" value="<%= admin.home.stat2Value %>"></label>
+          <label><span>Stat 2 label</span><input data-json-name="stat2Label" value="<%= admin.home.stat2Label %>"></label>
+          <label><span>Stat 3 value</span><input data-json-name="stat3Value" value="<%= admin.home.stat3Value %>"></label>
+          <label><span>Stat 3 label</span><input data-json-name="stat3Label" value="<%= admin.home.stat3Label %>"></label>
+          <label><span>Stat 4 value</span><input data-json-name="stat4Value" value="<%= admin.home.stat4Value %>"></label>
+          <label><span>Stat 4 label</span><input data-json-name="stat4Label" value="<%= admin.home.stat4Label %>"></label>
+          <label class="span-2"><span>Section text</span><textarea data-json-name="sectionText" rows="3"><%= admin.home.sectionText %></textarea></label>
+
+          <div class="field">
+            <span>Hero image</span>
+            <div class="image-field">
+              <input id="home-heroImage" class="path-input" readonly data-json-name="heroImage" value="<%= admin.home.heroImage || '' %>" placeholder="/images/hero-nepal.svg">
+              <button type="button" class="btn btn-secondary small js-upload-btn" data-target="home-heroImage" data-preview="home-heroImagePreview">Upload image</button>
+            </div>
+            <div id="home-heroImagePreview" class="inline-upload-preview"><img src="<%= admin.home.heroImage || '/images/hero-nepal.svg' %>" alt="Hero preview"></div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Save homepage</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="about" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>About</h2>
+      </div>
+      <form action="/admin/settings" method="POST" class="structured-settings-form js-settings-form" data-section-type="object">
+        <input type="hidden" name="section" value="about">
+        <input type="hidden" name="payload" value="">
+        <div class="form-grid">
+          <label><span>Badge label</span><input data-json-name="badgeLabel" value="<%= admin.about.badgeLabel %>"></label>
+          <label><span>Established year</span><input data-json-name="established" value="<%= admin.about.established %>"></label>
+          <label class="span-2"><span>Hero title</span><input data-json-name="heroTitle" value="<%= admin.about.heroTitle %>"></label>
+          <label class="span-2"><span>Hero subtitle</span><textarea data-json-name="heroSubtitle" rows="3"><%= admin.about.heroSubtitle %></textarea></label>
+          <label><span>Established location</span><input data-json-name="establishedLocation" value="<%= admin.about.establishedLocation %>"></label>
+          <label><span>Story heading</span><input data-json-name="storyHeading" value="<%= admin.about.storyHeading %>"></label>
+          <label class="span-2"><span>Story paragraph 1</span><textarea data-json-name="storyParagraph1" rows="4"><%= admin.about.storyParagraph1 %></textarea></label>
+          <label class="span-2"><span>Story paragraph 2</span><textarea data-json-name="storyParagraph2" rows="4"><%= admin.about.storyParagraph2 %></textarea></label>
+          <label class="span-2"><span>Story paragraph 3</span><textarea data-json-name="storyParagraph3" rows="4"><%= admin.about.storyParagraph3 %></textarea></label>
+
+          <div class="field">
+            <span>Main image</span>
+            <div class="image-field">
+              <input id="about-mainImage" class="path-input" readonly data-json-name="mainImage" value="<%= admin.about.mainImage %>">
+              <button type="button" class="btn btn-secondary small js-upload-btn" data-target="about-mainImage" data-preview="about-mainImagePreview">Upload image</button>
+            </div>
+            <div id="about-mainImagePreview" class="inline-upload-preview"><img src="<%= admin.about.mainImage %>" alt="About main preview"></div>
+          </div>
+
+          <div class="field">
+            <span>Side image</span>
+            <div class="image-field">
+              <input id="about-sideImage" class="path-input" readonly data-json-name="sideImage" value="<%= admin.about.sideImage %>">
+              <button type="button" class="btn btn-secondary small js-upload-btn" data-target="about-sideImage" data-preview="about-sideImagePreview">Upload image</button>
+            </div>
+            <div id="about-sideImagePreview" class="inline-upload-preview"><img src="<%= admin.about.sideImage %>" alt="About side preview"></div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Save about section</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="leadership" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>Team Members</h2>
+      </div>
+
+      <% admin.team.forEach(person => { %>
+        <div class="entity-card">
+          <div class="entity-head">
+            <h3><%= person.name %></h3>
+            <form action="/admin/team/delete" method="POST" onsubmit="return confirm('Delete this team member?')">
+              <input type="hidden" name="id" value="<%= person.id %>">
+              <button class="btn btn-danger small" type="submit">Delete</button>
+            </form>
+          </div>
+
+          <form action="/admin/team/save" method="POST" class="entity-form">
+            <input type="hidden" name="id" value="<%= person.id %>">
+            <div class="entity-grid">
+              <input name="name" value="<%= person.name %>" placeholder="Name">
+              <input name="role" value="<%= person.role %>" placeholder="Role">
+              <div class="field">
+                <span>Photo</span>
+                <div class="image-field">
+                  <input id="team-<%= person.id %>-image" class="path-input" readonly name="image" value="<%= person.image %>" placeholder="/images/uploads/team.jpg">
+                  <button type="button" class="btn btn-secondary small js-upload-btn" data-target="team-<%= person.id %>-image" data-preview="team-<%= person.id %>-preview">Upload image</button>
+                </div>
+                <div id="team-<%= person.id %>-preview" class="inline-upload-preview"><img src="<%= person.image %>" alt="Team member preview"></div>
+              </div>
+              <textarea class="span-2" name="bio" rows="4" placeholder="Bio"><%= person.bio %></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary small" type="submit">Save team member</button>
+            </div>
+          </form>
+        </div>
+      <% }) %>
+
+      <div class="entity-card add-card">
+        <div class="entity-head"><h3>Add new team member</h3></div>
+        <form action="/admin/team/save" method="POST" class="entity-form">
+          <div class="entity-grid">
+            <input name="name" placeholder="Name">
+            <input name="role" placeholder="Role">
+            <div class="field">
+              <span>Photo</span>
+              <div class="image-field">
+                <input id="team-new-image" class="path-input" readonly name="image" placeholder="/images/uploads/team.jpg">
+                <button type="button" class="btn btn-secondary small js-upload-btn" data-target="team-new-image" data-preview="team-new-preview">Upload image</button>
+              </div>
+              <div id="team-new-preview" class="inline-upload-preview placeholder">Image preview</div>
+            </div>
+            <textarea class="span-2" name="bio" rows="4" placeholder="Bio"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary small" type="submit">Add team member</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="footer" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>Footer</h2>
+      </div>
+      <form action="/admin/settings" method="POST" class="structured-settings-form js-settings-form" data-section-type="object">
+        <input type="hidden" name="section" value="footer">
+        <input type="hidden" name="payload" value="">
+        <div class="form-grid">
+          <label class="span-2"><span>Description</span><textarea data-json-name="description" rows="4"><%= admin.footer.description %></textarea></label>
+          <label><span>Badge 1</span><input data-json-name="badge1" value="<%= admin.footer.badge1 %>"></label>
+          <label><span>Badge 2</span><input data-json-name="badge2" value="<%= admin.footer.badge2 %>"></label>
+          <label><span>Badge 3</span><input data-json-name="badge3" value="<%= admin.footer.badge3 %>"></label>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Save footer</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="seo" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>SEO</h2>
+      </div>
+      <form action="/admin/settings" method="POST" class="structured-settings-form js-settings-form" data-section-type="object">
+        <input type="hidden" name="section" value="seo">
+        <input type="hidden" name="payload" value="">
+        <div class="form-grid form-grid-3">
+          <div class="subsection-card" style="padding:18px;">
+            <h3>Home</h3>
+            <label><span>Title</span><input data-json-name="homeTitle" value="<%= admin.seo.homeTitle %>"></label>
+            <label><span>Description</span><textarea data-json-name="homeDescription" rows="4"><%= admin.seo.homeDescription %></textarea></label>
+          </div>
+          <div class="subsection-card" style="padding:18px;">
+            <h3>About</h3>
+            <label><span>Title</span><input data-json-name="aboutTitle" value="<%= admin.seo.aboutTitle %>"></label>
+            <label><span>Description</span><textarea data-json-name="aboutDescription" rows="4"><%= admin.seo.aboutDescription %></textarea></label>
+          </div>
+          <div class="subsection-card" style="padding:18px;">
+            <h3>Packages</h3>
+            <label><span>Title</span><input data-json-name="packagesTitle" value="<%= admin.seo.packagesTitle %>"></label>
+            <label><span>Description</span><textarea data-json-name="packagesDescription" rows="4"><%= admin.seo.packagesDescription %></textarea></label>
+          </div>
+          <div class="subsection-card" style="padding:18px;">
+            <h3>Blog</h3>
+            <label><span>Title</span><input data-json-name="blogTitle" value="<%= admin.seo.blogTitle %>"></label>
+            <label><span>Description</span><textarea data-json-name="blogDescription" rows="4"><%= admin.seo.blogDescription %></textarea></label>
+          </div>
+          <div class="subsection-card" style="padding:18px;">
+            <h3>Gallery</h3>
+            <label><span>Title</span><input data-json-name="galleryTitle" value="<%= admin.seo.galleryTitle %>"></label>
+            <label><span>Description</span><textarea data-json-name="galleryDescription" rows="4"><%= admin.seo.galleryDescription %></textarea></label>
+          </div>
+          <div class="subsection-card" style="padding:18px;">
+            <h3>Contact</h3>
+            <label><span>Title</span><input data-json-name="contactTitle" value="<%= admin.seo.contactTitle %>"></label>
+            <label><span>Description</span><textarea data-json-name="contactDescription" rows="4"><%= admin.seo.contactDescription %></textarea></label>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Save SEO</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="packages" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>Packages</h2>
+      </div>
+
+      <% admin.packages.forEach(pkg => { %>
+        <div class="entity-card">
+          <div class="entity-head">
+            <h3><%= pkg.title %></h3>
+            <form action="/admin/package/delete" method="POST" onsubmit="return confirm('Delete this package?')">
+              <input type="hidden" name="id" value="<%= pkg.id %>">
+              <button class="btn btn-danger small" type="submit">Delete</button>
+            </form>
+          </div>
+
+          <form action="/admin/package/save" method="POST" class="entity-form">
+            <input type="hidden" name="id" value="<%= pkg.id %>">
+            <div class="entity-grid">
+              <input name="title" value="<%= pkg.title %>" placeholder="Title">
+              <input name="slug" value="<%= pkg.slug %>" placeholder="Slug">
+              <input name="subtitle" value="<%= pkg.subtitle %>" placeholder="Subtitle">
+              <input name="region" value="<%= pkg.region %>" placeholder="Region">
+              <input name="duration" value="<%= pkg.duration %>" placeholder="Duration">
+              <input name="altitude" value="<%= pkg.altitude %>" placeholder="Altitude">
+              <input name="difficulty" value="<%= pkg.difficulty %>" placeholder="Difficulty">
+              <input name="price" value="<%= pkg.price %>" placeholder="Price">
+              <input name="category" value="<%= pkg.category %>" placeholder="Category">
+              <div class="field">
+                <span>Package image</span>
+                <div class="image-field">
+                  <input id="pkg-<%= pkg.id %>-image" class="path-input" readonly name="image" value="<%= pkg.image %>" placeholder="/images/uploads/package.jpg">
+                  <button type="button" class="btn btn-secondary small js-upload-btn" data-target="pkg-<%= pkg.id %>-image" data-preview="pkg-<%= pkg.id %>-preview">Upload image</button>
+                </div>
+                <div id="pkg-<%= pkg.id %>-preview" class="inline-upload-preview"><img src="<%= pkg.image %>" alt="Package preview"></div>
+              </div>
+              <input name="seo_title" value="<%= pkg.seo_title %>" placeholder="SEO title">
+              <input name="seo_description" value="<%= pkg.seo_description %>" placeholder="SEO description">
+              <textarea class="span-2" name="description" rows="4" placeholder="Description"><%= pkg.description %></textarea>
+              <label class="check-row"><input type="checkbox" name="featured" <%= pkg.featured ? 'checked' : '' %>> Show on homepage</label>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary small" type="submit">Save package</button>
+            </div>
+          </form>
+        </div>
+      <% }) %>
+
+      <div class="entity-card add-card">
+        <div class="entity-head"><h3>Add new package</h3></div>
+        <form action="/admin/package/save" method="POST" class="entity-form">
+          <div class="entity-grid">
+            <input name="title" placeholder="Title">
+            <input name="slug" placeholder="Slug">
+            <input name="subtitle" placeholder="Subtitle">
+            <input name="region" placeholder="Region">
+            <input name="duration" placeholder="Duration">
+            <input name="altitude" placeholder="Altitude">
+            <input name="difficulty" placeholder="Difficulty">
+            <input name="price" placeholder="Price">
+            <input name="category" placeholder="Category">
+            <div class="field">
+              <span>Package image</span>
+              <div class="image-field">
+                <input id="pkg-new-image" class="path-input" readonly name="image" placeholder="/images/uploads/package.jpg">
+                <button type="button" class="btn btn-secondary small js-upload-btn" data-target="pkg-new-image" data-preview="pkg-new-preview">Upload image</button>
+              </div>
+              <div id="pkg-new-preview" class="inline-upload-preview placeholder">Image preview</div>
+            </div>
+            <input name="seo_title" placeholder="SEO title">
+            <input name="seo_description" placeholder="SEO description">
+            <textarea class="span-2" name="description" rows="4" placeholder="Description"></textarea>
+            <label class="check-row"><input type="checkbox" name="featured"> Show on homepage</label>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary small" type="submit">Add package</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="blog" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>Blog</h2>
+      </div>
+
+      <% admin.blogs.forEach(blog => { %>
+        <div class="entity-card">
+          <div class="entity-head">
+            <h3><%= blog.title %></h3>
+            <form action="/admin/blog/delete" method="POST" onsubmit="return confirm('Delete this blog?')">
+              <input type="hidden" name="id" value="<%= blog.id %>">
+              <button class="btn btn-danger small" type="submit">Delete</button>
+            </form>
+          </div>
+
+          <form action="/admin/blog/save" method="POST" class="entity-form">
+            <input type="hidden" name="id" value="<%= blog.id %>">
+            <div class="entity-grid">
+              <input name="title" value="<%= blog.title %>" placeholder="Title">
+              <input name="slug" value="<%= blog.slug %>" placeholder="Slug">
+              <input name="published_at" value="<%= blog.published_at %>" placeholder="Published date YYYY-MM-DD">
+              <div class="field">
+                <span>Cover image</span>
+                <div class="image-field">
+                  <input id="blog-<%= blog.id %>-image" class="path-input" readonly name="cover_image" value="<%= blog.cover_image %>" placeholder="/images/uploads/blog.jpg">
+                  <button type="button" class="btn btn-secondary small js-upload-btn" data-target="blog-<%= blog.id %>-image" data-preview="blog-<%= blog.id %>-preview">Upload image</button>
+                </div>
+                <div id="blog-<%= blog.id %>-preview" class="inline-upload-preview"><img src="<%= blog.cover_image %>" alt="Blog preview"></div>
+              </div>
+              <input name="seo_title" value="<%= blog.seo_title %>" placeholder="SEO title">
+              <input name="seo_description" value="<%= blog.seo_description %>" placeholder="SEO description">
+              <textarea name="excerpt" rows="3" placeholder="Excerpt"><%= blog.excerpt %></textarea>
+              <textarea name="content" rows="6" placeholder="Content"><%= blog.content %></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary small" type="submit">Save blog</button>
+            </div>
+          </form>
+        </div>
+      <% }) %>
+
+      <div class="entity-card add-card">
+        <div class="entity-head"><h3>Add new blog</h3></div>
+        <form action="/admin/blog/save" method="POST" class="entity-form">
+          <div class="entity-grid">
+            <input name="title" placeholder="Title">
+            <input name="slug" placeholder="Slug">
+            <input name="published_at" placeholder="Published date YYYY-MM-DD">
+            <div class="field">
+              <span>Cover image</span>
+              <div class="image-field">
+                <input id="blog-new-image" class="path-input" readonly name="cover_image" placeholder="/images/uploads/blog.jpg">
+                <button type="button" class="btn btn-secondary small js-upload-btn" data-target="blog-new-image" data-preview="blog-new-preview">Upload image</button>
+              </div>
+              <div id="blog-new-preview" class="inline-upload-preview placeholder">Image preview</div>
+            </div>
+            <input name="seo_title" placeholder="SEO title">
+            <input name="seo_description" placeholder="SEO description">
+            <textarea name="excerpt" rows="3" placeholder="Excerpt"></textarea>
+            <textarea name="content" rows="6" placeholder="Content"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary small" type="submit">Add blog</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="gallery" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>Gallery</h2>
+      </div>
+
+      <% admin.gallery.forEach(item => { %>
+        <div class="entity-card">
+          <div class="entity-head">
+            <h3><%= item.title %></h3>
+            <form action="/admin/gallery/delete" method="POST" onsubmit="return confirm('Delete this gallery item?')">
+              <input type="hidden" name="id" value="<%= item.id %>">
+              <button class="btn btn-danger small" type="submit">Delete</button>
+            </form>
+          </div>
+
+          <form action="/admin/gallery/save" method="POST" class="entity-form">
+            <input type="hidden" name="id" value="<%= item.id %>">
+            <div class="entity-grid">
+              <input name="title" value="<%= item.title %>" placeholder="Title">
+              <input name="category" value="<%= item.category %>" placeholder="Category">
+              <div class="field span-2">
+                <span>Gallery image</span>
+                <div class="image-field">
+                  <input id="gallery-<%= item.id %>-image" class="path-input" readonly name="image" value="<%= item.image %>" placeholder="/images/uploads/gallery.jpg">
+                  <button type="button" class="btn btn-secondary small js-upload-btn" data-target="gallery-<%= item.id %>-image" data-preview="gallery-<%= item.id %>-preview">Upload image</button>
+                </div>
+                <div id="gallery-<%= item.id %>-preview" class="inline-upload-preview"><img src="<%= item.image %>" alt="Gallery preview"></div>
+              </div>
+              <textarea class="span-2" name="description" rows="3" placeholder="Description"><%= item.description %></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary small" type="submit">Save gallery item</button>
+            </div>
+          </form>
+        </div>
+      <% }) %>
+
+      <div class="entity-card add-card">
+        <div class="entity-head"><h3>Add gallery item</h3></div>
+        <form action="/admin/gallery/save" method="POST" class="entity-form">
+          <div class="entity-grid">
+            <input name="title" placeholder="Title">
+            <input name="category" placeholder="Category">
+            <div class="field span-2">
+              <span>Gallery image</span>
+              <div class="image-field">
+                <input id="gallery-new-image" class="path-input" readonly name="image" placeholder="/images/uploads/gallery.jpg">
+                <button type="button" class="btn btn-secondary small js-upload-btn" data-target="gallery-new-image" data-preview="gallery-new-preview">Upload image</button>
+              </div>
+              <div id="gallery-new-preview" class="inline-upload-preview placeholder">Image preview</div>
+            </div>
+            <textarea class="span-2" name="description" rows="3" placeholder="Description"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary small" type="submit">Add gallery item</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="inquiries" class="admin-panel-card">
+      <div class="admin-section-title">
+        <h2>Inquiries</h2>
+      </div>
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Trip</th>
+              <th>Contact</th>
+              <th>Travel</th>
+              <th>Message</th>
+              <th>Status</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% admin.inquiries.forEach(item => { %>
+              <tr>
+                <td><strong><%= item.name || 'Unknown' %></strong><br><small><%= item.created_at || '' %></small></td>
+                <td><%= item.trip || '-' %></td>
+                <td><small><%= item.email || '-' %><br><%= item.phone || '-' %></small></td>
+                <td><small>Date: <%= item.travel_date || '-' %><br>Group: <%= item.group_size || '-' %></small></td>
+                <td><small><%= item.message || '-' %></small></td>
+                <td>
+                  <form action="/admin/inquiry/status" method="POST" class="inquiry-actions">
+                    <input type="hidden" name="id" value="<%= item.id %>">
+                    <select name="status">
+                      <% ['New','In Progress','Responded','Closed'].forEach(status => { %>
+                        <option value="<%= status %>" <%= item.status===status ? 'selected' : '' %>><%= status %></option>
+                      <% }) %>
+                    </select>
+                    <button class="btn btn-dark small" type="submit">Update</button>
+                  </form>
+                </td>
+                <td>
+                  <form action="/admin/inquiry/delete" method="POST" onsubmit="return confirm('Delete this inquiry?')">
+                    <input type="hidden" name="id" value="<%= item.id %>">
+                    <button class="btn btn-danger small" type="submit">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+            <% if (!admin.inquiries.length) { %>
+              <tr><td colspan="7"><small>No inquiries yet.</small></td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="/js/admin.js"></script>
+</body>
+</html>
